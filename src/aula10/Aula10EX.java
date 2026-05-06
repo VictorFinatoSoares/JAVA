@@ -1,4 +1,4 @@
-package com.finatodev;
+package aula10;
 
 import java.util.Scanner;
 
