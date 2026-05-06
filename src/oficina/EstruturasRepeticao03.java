@@ -1,8 +1,8 @@
-package com.finatodev;
+package oficina;
 
 import java.util.Scanner;
 
-public class Oficina {
+public class EstruturasRepeticao03 {
 	public static void main(String[] args) {
 		at02();
 	}
