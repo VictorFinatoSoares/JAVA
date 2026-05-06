@@ -1,0 +1,142 @@
+<svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Background gradient: deep IntelliJ-style dark -->
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e1f2e"/>
+      <stop offset="100%" style="stop-color:#12131f"/>
+    </linearGradient>
+
+    <!-- Java orange gradient -->
+    <linearGradient id="javaOrange" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffb347"/>
+      <stop offset="100%" style="stop-color:#e8720c"/>
+    </linearGradient>
+
+    <!-- Cup body gradient -->
+    <linearGradient id="cupGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff" stop-opacity="0.95"/>
+      <stop offset="100%" style="stop-color:#d0d8f0" stop-opacity="0.9"/>
+    </linearGradient>
+
+    <!-- Accent blue (IntelliJ brand) -->
+    <linearGradient id="blueAccent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#6b8cff"/>
+      <stop offset="100%" style="stop-color:#a259ff"/>
+    </linearGradient>
+
+    <!-- Glow filter for steam -->
+    <filter id="steamGlow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Shadow filter -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="8" stdDeviation="12" flood-color="#000000" flood-opacity="0.45"/>
+    </filter>
+
+    <!-- Inner glow for coffee -->
+    <radialGradient id="coffeeGrad" cx="40%" cy="30%">
+      <stop offset="0%" style="stop-color:#6b3a1f"/>
+      <stop offset="100%" style="stop-color:#3b1a08"/>
+    </radialGradient>
+
+    <!-- Folder gradient -->
+    <linearGradient id="folderGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#4a5580"/>
+      <stop offset="100%" style="stop-color:#2d3456"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Rounded square background -->
+  <rect width="512" height="512" rx="96" ry="96" fill="url(#bgGrad)"/>
+
+  <!-- Subtle grid pattern overlay -->
+  <rect width="512" height="512" rx="96" ry="96" fill="none" stroke="#ffffff" stroke-opacity="0.03" stroke-width="1"/>
+
+  <!-- Decorative corner accent lines -->
+  <line x1="48" y1="48" x2="100" y2="48" stroke="url(#blueAccent)" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+  <line x1="48" y1="48" x2="48" y2="100" stroke="url(#blueAccent)" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+  <line x1="464" y1="464" x2="412" y2="464" stroke="url(#javaOrange)" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+  <line x1="464" y1="464" x2="464" y2="412" stroke="url(#javaOrange)" stroke-width="3" stroke-linecap="round" opacity="0.4"/>
+
+  <!-- === STACKED FOLDERS (representing organized lessons) === -->
+  <!-- Folder 3 (back) -->
+  <g opacity="0.45">
+    <path d="M112 340 Q112 328 124 328 L210 328 L222 316 L380 316 Q392 316 392 328 L392 400 Q392 412 380 412 L124 412 Q112 412 112 400 Z" fill="url(#folderGrad)"/>
+  </g>
+  <!-- Folder 2 (mid) -->
+  <g opacity="0.65">
+    <path d="M104 358 Q104 346 116 346 L205 346 L217 334 L390 334 Q402 334 402 346 L402 418 Q402 430 390 430 L116 430 Q104 430 104 418 Z" fill="url(#folderGrad)"/>
+  </g>
+  <!-- Folder 1 (front) -->
+  <path d="M96 376 Q96 364 108 364 L200 364 L212 352 L400 352 Q412 352 412 364 L412 436 Q412 448 400 448 L108 448 Q96 448 96 436 Z" fill="url(#folderGrad)" filter="url(#dropShadow)"/>
+
+  <!-- Folder label dots on front folder -->
+  <circle cx="136" cy="400" r="5" fill="url(#blueAccent)" opacity="0.7"/>
+  <rect x="152" y="395" width="60" height="10" rx="5" fill="#ffffff" opacity="0.15"/>
+  <circle cx="136" cy="424" r="5" fill="url(#javaOrange)" opacity="0.7"/>
+  <rect x="152" y="419" width="80" height="10" rx="5" fill="#ffffff" opacity="0.1"/>
+
+  <!-- === COFFEE CUP === -->
+  <g filter="url(#dropShadow)" transform="translate(256,210) scale(1)">
+
+    <!-- Cup body -->
+    <path d="M-90 -20 L-80 90 Q-78 104 -62 104 L62 104 Q78 104 80 90 L90 -20 Z"
+          fill="url(#cupGrad)"/>
+
+    <!-- Coffee liquid inside cup -->
+    <clipPath id="cupClip">
+      <path d="M-90 -20 L-80 90 Q-78 104 -62 104 L62 104 Q78 104 80 90 L90 -20 Z"/>
+    </clipPath>
+    <rect x="-90" y="10" width="180" height="100" fill="url(#coffeeGrad)" clip-path="url(#cupClip)"/>
+
+    <!-- Coffee surface sheen -->
+    <ellipse cx="0" cy="12" rx="75" ry="10" fill="#8b5030" opacity="0.6"/>
+    <ellipse cx="-8" cy="11" rx="35" ry="5" fill="#c0784a" opacity="0.3"/>
+
+    <!-- Cup rim -->
+    <rect x="-94" y="-28" width="188" height="18" rx="9" fill="url(#cupGrad)"/>
+
+    <!-- Handle -->
+    <path d="M80 10 Q128 10 128 52 Q128 94 80 94"
+          fill="none" stroke="url(#cupGrad)" stroke-width="16" stroke-linecap="round"/>
+
+    <!-- Saucer -->
+    <ellipse cx="0" cy="112" rx="108" ry="12" fill="url(#cupGrad)" opacity="0.85"/>
+
+    <!-- Java "J" on cup -->
+    <text x="0" y="75" text-anchor="middle" font-family="Georgia, serif" font-size="62" font-weight="bold"
+          fill="url(#javaOrange)" opacity="0.92">J</text>
+  </g>
+
+  <!-- === STEAM WISPS === -->
+  <g filter="url(#steamGlow)" opacity="0.75">
+    <!-- Steam 1 -->
+    <path d="M206 155 Q196 135 206 115 Q216 95 206 75"
+          fill="none" stroke="url(#javaOrange)" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+    <!-- Steam 2 -->
+    <path d="M256 145 Q246 125 256 105 Q266 85 256 65"
+          fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round" opacity="0.45"/>
+    <!-- Steam 3 -->
+    <path d="M306 155 Q316 135 306 115 Q296 95 306 75"
+          fill="none" stroke="url(#javaOrange)" stroke-width="6" stroke-linecap="round" opacity="0.6"/>
+  </g>
+
+  <!-- === CODE BRACKETS decoration === -->
+  <!-- Left bracket -->
+  <text x="68" y="230" font-family="'Courier New', monospace" font-size="52" font-weight="bold"
+        fill="url(#blueAccent)" opacity="0.5">{</text>
+  <!-- Right bracket -->
+  <text x="416" y="230" font-family="'Courier New', monospace" font-size="52" font-weight="bold"
+        fill="url(#blueAccent)" opacity="0.5">}</text>
+
+  <!-- Bottom label bar -->
+  <rect x="96" y="458" width="320" height="28" rx="14" fill="url(#blueAccent)" opacity="0.15"/>
+  <text x="256" y="477" text-anchor="middle" font-family="'Courier New', monospace" font-size="16" font-weight="bold"
+        fill="#8fa8ff" letter-spacing="3">JAVA COURSE</text>
+
+</svg>
