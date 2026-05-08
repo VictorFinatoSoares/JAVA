@@ -1,47 +1,39 @@
 package testes;
 
 import java.util.Scanner;
+import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
         t02();
+
     }
 
     public static void t01() {
         Scanner sc = new Scanner(System.in);
 
-        int soma = 0;
-        int num;
-        String r;
-        do {
+        System.out.print("Escreva algo neste formato -> SEUTEXTOAQUI: ");
+        String text = sc.nextLine();
 
-            System.out.print("Digite um número: ");
-            num = sc.nextInt();
-            soma += num;
-            sc.nextLine();
+        for (int i = text.length() - 1; i >= 0; i--) {
+            System.out.print(text.charAt(i));
 
-            System.out.print("Você quer SAIR? [S/N]: ");
-            r = sc.nextLine();
+        }
 
-        } while(r.equals("N"));
-
-        System.out.printf("A soma destes números é %d!", soma);
         sc.close();
-
     }
 
     public static void t02() {
-        int i = 0;
+        int[] n = {5, 7, 2, 3, 11, 19, 29, 23, 21};
 
-        do {
-            if (i % 2 == 0) {
-                System.out.println(i);
-            }
+        Arrays.sort(n);
 
-            i++;
-        } while (i <=2000);
+        for (int i : n) {
+            System.out.println(i);
+        }
 
     }
 
 
 }
+
