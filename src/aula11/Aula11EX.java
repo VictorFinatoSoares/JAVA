@@ -1,8 +1,8 @@
-package com.finatodev;
+package aula11;
 
 import java.util.Scanner;
 
-public class Main {
+public class Aula11EX {
     public static void main(String[] args) {
 
         ex4();
@@ -107,6 +107,8 @@ public class Main {
                 System.out.printf("%d é um número perfeito!%n", num);
             } else {
                 System.out.printf("%d não é um número perfeito!%n", num);
+                break;
+
             }
 
             System.out.print("Digite um número: ");
