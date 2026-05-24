@@ -1,4 +1,4 @@
-package com.finatodev;
+package oficina;
 
 import java.util.Scanner;
 
@@ -113,6 +113,11 @@ public class EstruturasRepeticao04 {
                 break;
 
             }
+
+            else {
+                System.out.println("OPÇÃO INVÁLIDA!");
+            }
+
         }
 
 
