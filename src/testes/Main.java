@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        t01();
+        classificarIdade();
     }
 
     public static void classificarIdade() {
@@ -83,9 +83,5 @@ public class Main {
 
     }
 
-    public static void t01() {
-        int o4 = 0;
-        System.out.println(++o4);
-    }
 
 }

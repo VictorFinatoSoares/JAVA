@@ -1,9 +1,9 @@
-package com.finatodev;
+package aula16;
 
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class Main {
+public class Aula16_EX {
     public static final Scanner sc = new Scanner(System.in);
 
     public static void main(String[] args) {
