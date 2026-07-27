@@ -1,24 +1,35 @@
 package com.finatodev;
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-       ex01();
+       ex02();
        sc.close();
 
     }
 
     public static void ex01() {
         System.out.print("Informe N: ");
-        int n = sc.nextInt();
 
+        int n = 0;
+
+        try {
+            n = sc.nextInt();
+        } catch (InputMismatchException e) {
+            System.out.println("Entrada inválida");
+        }
         int[] meuArray = new int[n];
 
         for (int i = 0; i < meuArray.length; i++) {
             System.out.printf("Informe o número [%d]: ", i + 1);
-            meuArray[i] = sc.nextInt();
+            try {
+                meuArray[i] = sc.nextInt();
+            } catch (InputMismatchException e) {
+                System.out.println("Entrada inválida");
+            }
         }
 
         System.out.print("Informe o valor que quer procurar: ");
@@ -37,14 +48,26 @@ public class Main {
 
     public static void ex02() {
         System.out.print("Informe N: ");
-        int n = sc.nextInt();
 
+        int n = 0;
+        try {
+            n = sc.nextInt();
+        } catch(InputMismatchException e) {
+            System.out.println("Entrada inválida");
+            return;
+        }
         int[] meuArray = new int[n];
 
         for (int i = 0; i < meuArray.length; i++) {
             System.out.printf("Informe o número [%d]: ", i + 1);
-            meuArray[i] = sc.nextInt();
+            try {
+                meuArray[i] = sc.nextInt();
+            } catch(InputMismatchException e) {
+                System.out.println("Entrada inválida");
+                return;
+            }
         }
+
 
         boolean arrayCrescente = true;
 
