@@ -1,4 +1,4 @@
-package com.finatodev;
+package aula20;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class Main {
     public static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-       ex02();
+       ex01();
        sc.close();
 
     }
@@ -20,6 +20,7 @@ public class Main {
             n = sc.nextInt();
         } catch (InputMismatchException e) {
             System.out.println("Entrada inválida");
+            return;
         }
         int[] meuArray = new int[n];
 
@@ -29,6 +30,7 @@ public class Main {
                 meuArray[i] = sc.nextInt();
             } catch (InputMismatchException e) {
                 System.out.println("Entrada inválida");
+                return;
             }
         }
 
@@ -67,7 +69,6 @@ public class Main {
                 return;
             }
         }
-
 
         boolean arrayCrescente = true;
 

@@ -1,4 +1,4 @@
-package testes;
+package consultas;
 
 import java.util.Scanner;
 import java.util.StringTokenizer;
