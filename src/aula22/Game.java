@@ -4,9 +4,9 @@ import java.util.Scanner; // Obter entrada
 import java.util.InputMismatchException; // Validar erros de entrada
 
 public class Game {
-    // Variáveis Globais para facilitar minha vida
+    // Variáveis Globais
     public static final Scanner sc = new Scanner(System.in);
-    public static boolean isGameRunning = true; // Variável que  controla a execução do jogo
+    public static boolean isGameRunning = true; // Variável que controla a execução do jogo
     public static boolean matchEnded = false; // Variável que controla o fim de cada partida
     public static int currentPlayer = 1; // Variável que controla o turno de cada jogador
     public static int movesPlayed; // Variável que conta quantas rodadas passaram em cada partida
@@ -44,7 +44,7 @@ public class Game {
 
     // Função que começa a logística de cada partida no jogo
     public static int startGame() {
-        // Reseta as variáveis necessárias após o fim de uma partida:
+        // Reinicia as variáveis necessárias após o fim de uma partida:
         movesPlayed = 0; // Zera as rodadas
         matchEnded = false; // A partida não acabou
         currentPlayer = 1; // O jogador um sempre começa
@@ -127,7 +127,7 @@ public class Game {
     // Função que recebe e valida a jogada dos jogadores durante cada rodada
     public static void playerMoves(int dimensions, char[][] currentBoard) {
         char moveSymbol; // Inicia uma variável que controla qual símbolo será usado
-        String currentPlayerName = ""; // Inicia uma variável que define o nome do jogador atual
+        String currentPlayerName; // Inicia uma variável que define o nome do jogador atual
 
         // Define essas variáveis dependendo do jogador atual (variável global)
         if (currentPlayer == 1) {
@@ -143,12 +143,12 @@ public class Game {
         int r = dimensions;
         int c = dimensions;
 
-        // Define todas as validações como falsas iniciamente
+        // Define todas as validações como falsas inicialmente
         boolean isRowValid = false;
         boolean isColumnValid = false;
         boolean playValid = false;
 
-        // Mensagem de exibição com a rodada e turno atual..
+        // Mensagem de exibição com a rodada e turno atual.
         System.out.printf("[RODADA: %d] Vez do Jogador(a): %s%n%n", movesPlayed + 1, currentPlayerName);
 
         // Enquanto uma validação ainda não estiver concluída
@@ -156,7 +156,7 @@ public class Game {
             try { // Tentará
                 if (!isRowValid) { // Caso a linha informada seja inválida
                     // Pede a linha ao usuário
-                    System.out.print("Informe a linha da jogada: ");
+                    System.out.printf("Informe a linha da jogada (1-%d): ", dimensions);
                     r = sc.nextInt();
 
                     // Verifica se a linha é maior ou igual a 1 e não é maior que a dimensão
@@ -169,7 +169,7 @@ public class Game {
 
                 } else if (!isColumnValid) { // Caso contrário, se a coluna informada for inválida
                     // Pede a coluna ao usuário
-                    System.out.print("Informe a coluna da jogada: ");
+                    System.out.printf("Informe a coluna da jogada (1-%d): ", dimensions);
                     c = sc.nextInt();
 
                     // Verifica se a coluna é maior ou igual a 1 e não é maior que a dimensão
@@ -245,11 +245,11 @@ public class Game {
 
         // Verifica as diagonais
 
-        // Variáveis de controle de posição da primeira diagonal
+        // Variáveis de posição da primeira diagonal
         int playerOnePositionsD = 0;
         int playerTwoPositionsD = 0;
 
-        // Variáveis de controle de posição da segunda diagonal
+        // Variáveis de posição da segunda diagonal
         int playerOnePositionsD2 = 0;
         int playerTwoPositionsD2 = 0;
 
