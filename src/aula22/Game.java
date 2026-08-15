@@ -9,19 +9,19 @@ public class Game {
     public static boolean isGameRunning = true; // Variável que controla a execução do jogo
     public static boolean matchEnded = false; // Variável que controla o fim de cada partida
     public static int currentPlayer = 1; // Variável que controla o turno de cada jogador
-    public static int movesPlayed; // Variável que conta quantas rodadas passaram em cada partida
+    public static int movesPlayed; // Variável que conta quantas jogadas passaram em cada partida
     public static String playerOneName = ""; // Variável que guarda o nome do jogador um
     public static String playerTwoName = ""; // Variável que guarda o nome do jogador dois
     public static int playerOneWins = 0; // Variável que guarda a quantia de vitórias do jogador um
     public static int playerTwoWins = 0; // Variável que guarda a quantidade de vitórias do jogador dois
     public static int currentMatch = 1; // Variável que controla a partida atual
 
-    static void main() {
+    public static void main(String[] args) {
         System.out.println("\n==== Jogo INICIADO: Partida 1 ===="); // Mensagem inicial
 
         // Inicia o jogo pela primeira vez
         int dimension = startGame(); // Obtém a dimensão vinda do startGame()
-        char[][] gameBoard = resetBoard(dimension); // Preenche o tabuleiro com * (vazio) já com a dimensão informada
+        char[][] gameBoard = resetBoard(dimension); // Preenche o tabuleiro com ' ' (vazio) já com a dimensão informada
 
         // Dinâmica do jogo enquanto rodando:
         while (isGameRunning) {
@@ -45,11 +45,11 @@ public class Game {
     // Função que começa a logística de cada partida no jogo
     public static int startGame() {
         // Reinicia as variáveis necessárias após o fim de uma partida:
-        movesPlayed = 0; // Zera as rodadas
+        movesPlayed = 0; // Zera as jogadas
         matchEnded = false; // A partida não acabou
         currentPlayer = 1; // O jogador um sempre começa
 
-        if (currentMatch == 1) { // Se estiver na primeira parte, pede o nome de cada jogador (já valida se realmente algo foi escrito)
+        if (currentMatch == 1) { // Se estiver na primeira partida, pede o nome de cada jogador (já valida se realmente algo foi escrito)
             System.out.println();
             while (playerOneName.isEmpty()) {
                 System.out.print("Insira o nome do Jogador 1: ");
@@ -95,10 +95,10 @@ public class Game {
         // Com base nas dimensões vindas de startGame(), cria uma matriz com essa proporção
         char[][] emptyBoard = new char[dimensions][dimensions];
 
-        // Realiza um for, preenchendo cada posição da matriz com * (vazio)
+        // Realiza um for, preenchendo cada posição da matriz com ' ' (vazio)
         for (int i = 0; i < dimensions; i++) {
             for (int j = 0; j < dimensions; j++) {
-                emptyBoard[i][j] = '*';
+                emptyBoard[i][j] = ' ';
             }
         }
 
@@ -112,15 +112,19 @@ public class Game {
         System.out.println();
 
         // Usa um for para exibir o tabuleiro
-        for (char[] chars : currentBoard) {
+        for (int i = 0; i < currentBoard.length; i++) {
             for (int j = 0; j < currentBoard.length; j++) {
-                System.out.print(chars[j] + " | "); // Exibe a linha separando os elementos com "|"
+                System.out.printf(" %c ", currentBoard[i][j]); // Exibe o símbolo com espaçamento nos dois lados
+                if (j < currentBoard.length - 1) System.out.print("|"); // Caso não esteja no limite, exibe a separação com | (pipe)
+
             }
             // Depois de uma linha pula para a próxima
             System.out.println();
+
+            // Separa as linhas com ------ repeat multiplica a quantidade dependendo do tamanho do tabuleiro
+            if (i < currentBoard.length - 1) System.out.println("-".repeat(currentBoard.length * 4 - 1));
         }
 
-        // Cria uma linha vazia antes de exibir o tabuleiro (outra questão puramente estética)
         System.out.println();
     }
 
@@ -149,7 +153,7 @@ public class Game {
         boolean playValid = false;
 
         // Mensagem de exibição com a rodada e turno atual.
-        System.out.printf("[RODADA: %d] Vez do Jogador(a): %s%n%n", movesPlayed + 1, currentPlayerName);
+        System.out.printf("[JOGADA: %d] Vez do Jogador(a): %s (%c)%n%n", movesPlayed + 1, currentPlayerName, moveSymbol);
 
         // Enquanto uma validação ainda não estiver concluída
         while (!isRowValid || !isColumnValid || !playValid) {
@@ -180,9 +184,9 @@ public class Game {
                         System.out.printf("Você informou a coluna %d...%nMas ela é INVÁLIDA para as dimensões informadas (%dx%d).%n%n", c, dimensions, dimensions);
 
                 } else { // Se ambas estiverem válidas
-                    if (currentBoard[r - 1][c - 1] == '*') { // Se a posição escolhida estiver desocupada
+                    if (currentBoard[r - 1][c - 1] == ' ') { // Se a posição escolhida estiver desocupada
                         currentBoard[r - 1][c - 1] = moveSymbol; // Aplica a jogada do jogador
-                        movesPlayed++; // Aumenta a quantidade de lances feitos (rodadas)
+                        movesPlayed++; // Aumenta a quantidade de lances feitos (jogadas)
                         playValid = true; // Valida a jogada (para sair do loop)
                     } else { // Se a posição já estiver ocupada:
                         // Informa ao usuário
@@ -298,7 +302,7 @@ public class Game {
 
         while (true) { // Pede ao usuário se ele quer continuar jogando X para Sim e O para Não até ele informar um dos dois
             System.out.print("Vamos para a próxima partida? (X para SIM e O para NÃO) ");
-            String r = sc.nextLine().toUpperCase();
+            String r = sc.nextLine().trim().toUpperCase();
 
             switch (r) {
                 case "" -> System.out.println("Você precisa digitar algo!\n");  // Valida se o usuário digitou algo
@@ -311,11 +315,8 @@ public class Game {
                     return false; // Em caso negativo retorna false
                 }
                 default ->  // Se a resposta não for válida, retorna erro ao usuário
-                        System.out.println("\nERRO: Resposta INVÁLIDA! Digite S (Sim) ou N (Não).\n");
+                        System.out.println("\nERRO: Resposta INVÁLIDA! Digite X (Sim) ou O (Não).\n");
             }
-
-
-
         }
     }
 
@@ -323,6 +324,6 @@ public class Game {
     public static void showStats() {
         System.out.println("\n======== ESTATÍSTICAS ========\n");
 
-        System.out.printf("%s venceu %d vezes.%n%s venceu %d vezes.%n%nHouveram um total de %d empates!", playerOneName, playerOneWins, playerTwoName, playerTwoWins, currentMatch - (playerOneWins + playerTwoWins));
+        System.out.printf("%s venceu %d vezes.%n%s venceu %d vezes.%n%nHouve um total de %d empates!", playerOneName, playerOneWins, playerTwoName, playerTwoWins, currentMatch - (playerOneWins + playerTwoWins));
     }
 }
