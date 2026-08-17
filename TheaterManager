@@ -1,0 +1,108 @@
+package com.finatodev;
+
+import java.util.Arrays;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
+public class TheaterManager {
+    public static final Scanner sc = new Scanner(System.in);
+    public static final char[][] r1 = new char[4][5];
+    public static final char[][] r2 = new char[5][6];
+    public static final char[][] r3 = new char[3][4];
+
+    public static void main(String[] args) {
+        start();
+    }
+
+    public static void start() {
+        autoFill();
+
+        System.out.println("Filmes em cartaz:\n1 - Batalha dos Aflitos (R$ 20,00) - Sala 1\n2 - Homem Aranha (R$ 28,00) - Sala 2\n3 - O DVD do Renato Portaluppi (R$ 15,00) - Sala 3\n");
+
+        int room = 0;
+
+        while (true) {
+            try {
+                System.out.println("Escolha o filme (1-3): ");
+                room = sc.nextInt();
+                if (room <= 0 || room > 3) {
+                    System.out.println("Você informou uma sala INVÁLIDA: ");
+                    continue;
+                }
+
+                break;
+
+            } catch (InputMismatchException e) {
+                System.out.println("ERRO! A entrada precisa ser um NÚMERO INTEIRO!");
+                sc.nextLine();
+            }
+        }
+
+        if (room == 1) {
+            renderRoom(1, "Batalha os Aflitos", 4, 5, r1);
+            buySeat(r1, 20, 4, 5);
+        }
+        else if (room == 2)  {
+            renderRoom(2, "Homem Aranha", 5, 6, r2);
+            buySeat(r2, 28, 5, 6);
+        }
+        else {
+            renderRoom(1, "O DVD do Renato Portaluppi", 3, 4, r3);
+            buySeat(r3, 15, 3, 4);
+        }
+
+
+    }
+
+    public static void renderRoom(int room, String movie, int lines, int columns, char[][] roomSeats) {
+        System.out.printf("=== Sala %d - %s ===\n", room, movie);
+
+        for (int i = 0; i < lines; i++) {
+            for (int j = 0; j < columns; j++) {
+                System.out.print(" " + roomSeats[i][j] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+    public static void autoFill() {
+        for (char[] l: r1) {
+            Arrays.fill(l, '.');
+        }
+
+        for (char[] l: r2) {
+            Arrays.fill(l, '.');
+
+        }for (char[] l: r3) {
+            Arrays.fill(l, '.');
+        }
+
+
+        r1[1][2] = 'x';
+        r1[3][0] = 'x';
+        r3[2][3] = 'x';
+        r3[1][1] = 'x';
+    }
+
+    public static void buySeat(char[][] roomSeats, int price, int lines, int columns) {
+        int qAssentos = 0;
+
+        while (true) {
+            try {
+                System.out.println("Informe a quantidade de assentos que deseja comprar: ");
+                qAssentos = sc.nextInt();
+                break;
+            } catch (InputMismatchException e) {
+                System.out.println("ERRO: A entrada precisa ser um NÚMERO INTEIRO!");
+                sc.nextLine();
+            }
+        }
+
+        for (int i = 0; i < qAssentos;) {
+
+        }
+
+    }
+
+
+}
