@@ -1,5 +1,3 @@
-package com.finatodev;
-
 import java.util.Arrays;
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -23,10 +21,10 @@ public class TheaterManager {
 
         while (true) {
             try {
-                System.out.println("Escolha o filme (1-3): ");
+                System.out.print("Escolha o filme (1-3): ");
                 room = sc.nextInt();
                 if (room <= 0 || room > 3) {
-                    System.out.println("Você informou uma sala INVÁLIDA: ");
+                    System.out.println("Você informou uma sala INVÁLIDA!");
                     continue;
                 }
 
@@ -35,20 +33,21 @@ public class TheaterManager {
             } catch (InputMismatchException e) {
                 System.out.println("ERRO! A entrada precisa ser um NÚMERO INTEIRO!");
                 sc.nextLine();
+
             }
         }
 
         if (room == 1) {
-            renderRoom(1, "Batalha os Aflitos", 4, 5, r1);
-            buySeat(r1, 20, 4, 5);
+            renderRoom(1, "Batalha dos Aflitos", 4, 5, r1);
+            buySeat(1, "Batalha dos Aflitos", r1, 20, 4, 5);
         }
         else if (room == 2)  {
             renderRoom(2, "Homem Aranha", 5, 6, r2);
-            buySeat(r2, 28, 5, 6);
+            buySeat(2, "Homem Aranha", r2, 28, 5, 6);
         }
         else {
             renderRoom(1, "O DVD do Renato Portaluppi", 3, 4, r3);
-            buySeat(r3, 15, 3, 4);
+            buySeat(3, "O DVD do Renato Portaluppi", r3, 15, 3, 4);
         }
 
 
@@ -84,13 +83,13 @@ public class TheaterManager {
         r3[1][1] = 'x';
     }
 
-    public static void buySeat(char[][] roomSeats, int price, int lines, int columns) {
-        int qAssentos = 0;
+    public static void buySeat(int room, String movie, char[][] roomSeats, int price, int lines, int columns) {
+        int qSeats = 0;
 
         while (true) {
             try {
-                System.out.println("Informe a quantidade de assentos que deseja comprar: ");
-                qAssentos = sc.nextInt();
+                System.out.print("Informe a quantidade de assentos que deseja comprar: ");
+                qSeats = sc.nextInt();
                 break;
             } catch (InputMismatchException e) {
                 System.out.println("ERRO: A entrada precisa ser um NÚMERO INTEIRO!");
@@ -98,11 +97,99 @@ public class TheaterManager {
             }
         }
 
-        for (int i = 0; i < qAssentos;) {
+        int i = 0;
+        int[][] seatsChoosen = new int[qSeats][2];
 
+        int l = 0;
+        int c = 0;
+
+        while (i < qSeats) {
+            try {
+                System.out.printf("Assento %d - Informe a linha: ", i + 1);
+                l = sc.nextInt();
+                if (l <= 0 || l > lines) {
+                    System.out.println("\nERRO: A linha informada é INVÁLIDA!\n");
+                    sc.nextLine();
+                    continue;
+                }
+
+                seatsChoosen[i][0] = l;
+            } catch (InputMismatchException e) {
+                System.out.println("\nERRO: A Entrada precisa ser um NÚMERO INTEIRO!\n");
+                sc.nextLine();
+                continue;
+            }
+
+            while (true) {
+                try {
+                    System.out.printf("Assento %d - Informe a coluna: ", i + 1);
+                    c = sc.nextInt();
+                    if (c <= 0 || c > columns) {
+                        System.out.println("\nERRO: A coluna informada é INVÁLIDA!\n");
+                        sc.nextLine();
+                        continue;
+                    }
+                    seatsChoosen[i][1] = c;
+                    break;
+
+                } catch (InputMismatchException e) {
+                    System.out.println("\nERRO: A Entrada precisa ser um NÚMERO INTEIRO!\n");
+                    sc.nextLine();
+                    continue;
+                }
+            }
+
+            if (roomSeats[l - 1][c - 1] == 'x') {
+                System.out.println("O assento já está ocupado!");
+                continue;
+            }
+
+            i++;
         }
 
+        System.out.println("\nResumo da compra:\n");
+        System.out.printf("Filme: %s%nSala: %d%n", movie, room);
+        System.out.print("Assentos escolhidos:");
+
+        for (int j = 0; j < qSeats; j++) {
+            System.out.printf(" (%d, %d)", seatsChoosen[j][0], seatsChoosen[j][1]);
+        }
+
+        System.out.printf("\n\nPreço Final: R$ %.2f%n", (double) qSeats * price);
+
+        while (true) {
+            System.out.print("\nConfirma a compra (S/N)? ");
+            sc.nextLine();
+            String res = sc.nextLine();
+
+            if (res.equalsIgnoreCase("S")) {
+                System.out.println("\nCompra confirmada! Ingressos emitidos:\n");
+                for (int j = 0; j < qSeats; j++) {
+                    int ing = 1;
+                    System.out.printf("- Ingresso %d: %s - Sala %d - Assento (%d, %d)%n", ing, movie, room, seatsChoosen[j][0], seatsChoosen[j][1]);
+
+                    roomSeats[seatsChoosen[j][0] - 1][seatsChoosen[j][1] - 1] = 'x';
+                    ing++;
+                }
+
+                System.out.println("\n=== MAPA ATUALIZADO DA SALA: ====\n");
+                for (int j = 0; j < lines; j++) {
+                    for (int k = 0; k < columns; k++) {
+                        System.out.print(roomSeats[j][k] + " ");
+                    }
+                    System.out.println();
+                }
+
+
+                break;
+            }
+            else if (res.equalsIgnoreCase("N")) {
+                System.out.println("COMPRA CANCELADA!");
+                break;
+            }
+            else {
+                System.out.println("A resposta foi INVÁLIDA! Tente novamente.");
+            }
+        }
     }
-
-
 }
