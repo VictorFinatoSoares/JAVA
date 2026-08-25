@@ -34,7 +34,7 @@ public class Main {
         }
 
         // Loop que mostra abaixo da diagonal principal
-        System.out.println("\nElemenos ABAIXO da diagonal principal:");
+        System.out.println("\nElementos ABAIXO da diagonal principal:");
         for (int i = 1; i < matriz.length; i++) {
             for (int j = 0; j < i; j++) {
                 System.out.print(matriz[i][j] + " ");
@@ -42,13 +42,11 @@ public class Main {
         }
 
         // Loop que mostra acima da diagonal principal
-        System.out.println("\nElemenos ACIMA da diagonal principal:");
+        System.out.println("\nElementos ACIMA da diagonal principal:");
         for (int j = 1; j < matriz.length; j++) {
             for (int i = 0; i < j; i++) {
                 System.out.print(matriz[i][j] + " ");
             }
         }
-
-
     }
 }
