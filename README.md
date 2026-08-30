@@ -30,6 +30,8 @@ Entre os principais conteúdos abordados estão:
 * Operadores aritméticos, relacionais e lógicos;
 * Estruturas condicionais;
 * Estruturas de repetição;
+* Vetores e matrizes;
+* Métodos
 * Desenvolvimento de algoritmos;
 * Resolução de problemas utilizando lógica de programação.
 
