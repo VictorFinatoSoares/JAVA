@@ -3,8 +3,13 @@ package aula24;
 import java.util.Scanner;
 
 public class Main {
+    public static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
-        Scanner sc = new Scanner(System.in);
+        ex02();
+        sc.close();
+    }
+
+    public static void ex01() {
 
         System.out.print("Informe N: ");
         int n = Integer.parseInt(sc.nextLine());
@@ -46,6 +51,31 @@ public class Main {
         for (int j = 1; j < matriz.length; j++) {
             for (int i = 0; i < j; i++) {
                 System.out.print(matriz[i][j] + " ");
+            }
+        }
+    }
+
+    public static void ex02() {
+        boolean[] primo = new boolean[1000001];
+
+        // Assume inicialmente que todos de 2 até 1.000.000 são primos
+        for (int i = 2; i <= 1000000; i++) {
+            primo[i] = true;
+        }
+
+        // Crivo de Eratóstenes
+        for (int i = 2; i * i <= 1000000; i++) {
+            if (primo[i]) {
+                for (int j = i * i; j <= 1000000; j += i) {
+                    primo[j] = false;
+                }
+            }
+        }
+
+        // Imprime os primos
+        for (int i = 2; i <= 1000000; i++) {
+            if (primo[i]) {
+                System.out.println(i);
             }
         }
     }
