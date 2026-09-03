@@ -3,7 +3,6 @@ package cleancode;
 import java.util.Scanner;
 
 public class CalcularBonus {
-    public static final int CALCULAR_BONUS = 1;
     public static final int SAIR = 0;
     public static final int GERENTE = 1;
     public static final int DESENVOLVEDOR = 2;
@@ -78,5 +77,4 @@ public class CalcularBonus {
 
         return 0;
     }
-
 }
