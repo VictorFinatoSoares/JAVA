@@ -48,6 +48,7 @@ public class Ex06 {
                 break;
         }
 
+        sc.close();
     }
 
     public static double somar(double a, double b) {
