@@ -3,7 +3,7 @@ package sessoes.Estudo0109;
 import java.util.Scanner;
 
 public class Ex05 {
-    static void main(String[] args) {
+    public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
         // Exibe o menu de opções
@@ -38,6 +38,8 @@ public class Ex05 {
                 System.out.println("Desculpe! Essa opção não está no menu, tente novamente!");
             }
         }
+
+        sc.close();
     }
 
     public static void celsiusParaFahrenheit(double tempCelsius) {
@@ -47,7 +49,7 @@ public class Ex05 {
     }
 
     public static void fahrenheitParaCelsius(double tempFahrenheit) {
-        double tempCelsius = (tempFahrenheit - 32) * 1.8;
+        double tempCelsius = (tempFahrenheit - 32) / 1.8;
 
         System.out.printf("\n%.2f°F equivalem a %.2f°C%n",tempFahrenheit, tempCelsius);
     }
