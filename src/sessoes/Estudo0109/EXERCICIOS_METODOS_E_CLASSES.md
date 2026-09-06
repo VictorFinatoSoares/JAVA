@@ -54,7 +54,7 @@ O programa deve continuar sendo executado até que a opção de encerrar seja es
 
 **Exercício 12:** Crie uma segunda classe chamada `Utilitarios` no mesmo pacote do programa. 
 Mova para esta classe os métodos de cálculo criados nos exercícios anteriores, como verificar se um número é par,
-calcular fatorial, encontrar maior valor e realizar conversões de temperatura. A classe `Main` deve conter o menu
+calcular fatorial, encontrar maior valor e realizar conversões de temperatura. A classe `OperadorTernario` deve conter o menu
 e chamar os métodos da classe `Utilitarios`.
 
 Ainda não utilize atributos, construtores ou objetos. O objetivo é organizar métodos relacionados em uma classe.
