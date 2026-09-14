@@ -6,7 +6,19 @@ public class Exercicios {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        imprimirHorasMinutosSegundos(9000);
+
+        while (true) {
+            try {
+                System.out.print("\n=== Teste do Exercício 20: ===\n\nInforme a quantidade de segundos: ");
+                int qtdSegundos = Integer.parseInt(sc.nextLine());
+
+                imprimirHorasMinutosSegundos(qtdSegundos);
+                break;
+            } catch (NumberFormatException e) {
+                System.out.println("ERRO: A entrada precisa ser um NÚMERO INTEIRO!");
+            }
+        }
+
     }
 
     public static void imprimirGremioImortal() {
@@ -165,7 +177,7 @@ public class Exercicios {
         qSegundos -= 60 * qMinutos;
         qMinutos -= 60 * qHoras;
 
-        System.out.printf("%02d:%02d:%02d", qHoras, qMinutos, qSegundos);
+        System.out.printf("%02dh:%02dm:%02ds", qHoras, qMinutos, qSegundos);
 
     }
 
