@@ -6,7 +6,6 @@ public class Exercicios {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-
         while (true) {
             try {
                 System.out.print("\n=== Teste do Exercício 20: ===\n\nInforme a quantidade de segundos: ");
@@ -18,7 +17,6 @@ public class Exercicios {
                 System.out.println("ERRO: A entrada precisa ser um NÚMERO INTEIRO!");
             }
         }
-
     }
 
     public static void imprimirGremioImortal() {
@@ -100,22 +98,22 @@ public class Exercicios {
     }
 
     public static double calculoComOperacoes(double num1, double num2, char operador) {
-        if (operador == '+') {
-            return num1 + num2;
-        } else if (operador == '-') {
-            return num1 - num2;
-        } else if (operador == '*') {
-            return num1 * num2;
-        } else if (operador == '/') {
-            if (num2 == 0) {
-                System.out.println("ERRO DIVISÃO POR ZERO");
-                return num2;
+        return switch (operador) {
+            case '+' -> num1 + num2;
+            case '-' -> num1 - num2;
+            case '*' -> num1 * num2;
+            case '/' -> {
+                if (num2 == 0) {
+                    System.out.println("Erro: DIVISÃO POR ZERO!");
+                    yield -1;
+                }
+                yield num1 / num2;
             }
-            return -1;
-        } else {
-            System.out.println("OPERADOR INVÁLIDO");
-            return -1;
-        }
+            default -> {
+                System.out.println("Operador INVÁLIDO!");
+                yield -1;
+            }
+        };
     }
 
     public static double calcularAreaTriangulo(double base, double altura) {
