@@ -63,7 +63,8 @@ public class ImortalVictorFinato {
             if (opcao == 1) {
                 System.out.printf("A média das leituras é: %.2f\n\n", calcularMedia(leituras));
             } else if (opcao == 2) {
-                System.out.printf("Valor máximo: %.2f\nValor mínimo: %.2f\n\n", encontrarMaximo(leituras), encontrarMinimo(leituras));
+                System.out.printf("Valor máximo: %.2f\n", encontrarMaximo(leituras));
+                System.out.printf("Valor mínimo: %.2f\n\n", encontrarMinimo(leituras));
             } else if (opcao == 3) {
                 exibirDesvios(leituras);
             } else if (opcao == 4) {
@@ -112,25 +113,29 @@ public class ImortalVictorFinato {
 
     public static double encontrarMinimo(double[] leituras) {
         double menorValor = leituras[0];
+        int posMenor = 0;
 
-        for (double leitura : leituras) {
-            if (leitura < menorValor) {
-                menorValor = leitura;
+        for (int i = 0; i < leituras.length; i++) {
+            if (leituras[i] < menorValor) {
+                menorValor = leituras[i];
+                posMenor = i + 1;
             }
         }
-
+        System.out.printf("(Leitura %d) ", posMenor);
         return menorValor;
     }
 
     public static double encontrarMaximo(double[] leituras) {
-        double maiorValor = 0;
+        double maiorValor = leituras[0];
+        int posMaior = 0;
 
-        for (double leitura : leituras) {
-            if (leitura > maiorValor) {
-                maiorValor = leitura;
+        for (int i = 0; i < leituras.length; i++) {
+            if (leituras[i] > maiorValor) {
+                maiorValor = leituras[i];
+                posMaior = i + 1;
             }
         }
-
+        System.out.printf("(Leitura %d) ", posMaior);
         return maiorValor;
     }
 
