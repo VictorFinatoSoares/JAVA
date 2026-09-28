@@ -2,10 +2,13 @@ package aula27;
 
 import java.util.Scanner;
 
-
 public class ImortalVictorFinato {
     public static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
+        iniciarNovaSimulacao();
+    }
+
+    public static void iniciarNovaSimulacao() {
         System.out.println("\n=== IMORTAL-1 – SISTEMA DE BORDO ===\n");
 
         int quantLeituras;
@@ -64,10 +67,18 @@ public class ImortalVictorFinato {
             } else if (opcao == 3) {
                 exibirDesvios(leituras);
             } else if (opcao == 4) {
-                double min = lerDouble("Mínimo aceitável: ");
-                double max = lerDouble("Máximo aceitável: ");
+                while (true) {
+                    double min = lerDouble("Mínimo aceitável: ");
+                    double max = lerDouble("Máximo aceitável: ");
 
-                verificarFaixa(leituras, min, max);
+                    if (min >= max) {
+                        System.out.println("O valor mínimo precisa ser MENOR que o valor máximo!\n");
+                        continue;
+                    }
+
+                    verificarFaixa(leituras, min, max);
+                    break;
+                }
             } else {
                 exibirRelatorioCompleto(leituras);
             }
@@ -80,16 +91,7 @@ public class ImortalVictorFinato {
                 char resposta = sc.nextLine().charAt(0);
 
                 if (resposta == 'S') {
-                    System.out.println("\nIniciando uma nova simulação... Novas leituras serão sorteadas.\n");
-
-                    int quantLeituras = lerInteiro("Quantas leituras vão ser realizadas (3-100)? ");
-
-                    while (quantLeituras < 3 || quantLeituras > 100) {
-                        quantLeituras = lerInteiro("Quantas leituras vão ser realizadas (3-100)? ");
-                    }
-
-                    leituras = realizarLeituras(quantLeituras);
-
+                    iniciarNovaSimulacao();
                 } else {
                     System.out.println("Encerrando sistema...");
                     break;
