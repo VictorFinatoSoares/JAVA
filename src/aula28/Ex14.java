@@ -2,7 +2,7 @@ package aula28;
 
 import java.util.Scanner;
 
-public class Ex10 {
+public class Ex14 {
     public static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         int n = lerInteiro("Informe o N: ");
@@ -14,39 +14,9 @@ public class Ex10 {
             }
         }
 
-        System.out.println("Seu array ficou assim:");
         exibir(matriz);
 
-        System.out.printf("Soma da diagonal principal: %d\n", somaDiagonalPrincipal(matriz));
-        System.out.printf("Soma da diagonal secundária: %d\n", somaDiagonalSecundaria(matriz));
-
-        if (somaDiagonalPrincipal(matriz) > somaDiagonalSecundaria(matriz)) {
-            System.out.println("A soma da diagonal PRINCIPAL é maior!");
-        } else if (somaDiagonalSecundaria(matriz) > somaDiagonalPrincipal(matriz)) {
-            System.out.println("A soma da diagonal SECUNDÁRIA é maior!");
-        } else {
-            System.out.println("As duas somas são iguais!");
-        }
-    }
-
-    public static int somaDiagonalPrincipal(int[][] matriz) {
-        int soma = 0;
-
-        for (int i = 0; i < matriz.length; i++) {
-            soma += matriz[i][i];
-        }
-
-        return soma;
-    }
-
-    public static int somaDiagonalSecundaria(int[][] matriz) {
-        int soma = 0;
-
-        for (int i = 0; i < matriz.length; i++) {
-            soma += matriz[i][matriz.length - 1 - i];
-        }
-
-        return soma;
+        System.out.println(matrizIdentidade(matriz) ? "A matriz é identidade!" : "A matriz não é identidade");
     }
 
     public static void exibir(int[][] matriz) {
@@ -71,5 +41,23 @@ public class Ex10 {
             }
         }
         return num;
+    }
+
+    public static boolean matrizIdentidade(int[][] matriz) {
+        for (int i = 0; i < matriz.length; i++) {
+            for (int j = 0; j < matriz[i].length; j++) {
+                if (matriz[i][i] != 1)
+                    return false;
+
+                if (i != j) {
+                    if (matriz[i][j] != 0) {
+                        return false;
+                    }
+                }
+
+            }
+        }
+
+        return true;
     }
 }
