@@ -8,7 +8,7 @@ public class Ex10 {
         int n = lerInteiro("Informe o N: ");
         int[][] matriz = new int[n][n];
 
-            for (int i = 0; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             for (int j = 0; j < n; j++) {
                 matriz[i][j] = lerInteiro(String.format("Preencha a posição [%d][%d]: ", i + 1, j + 1));
             }
