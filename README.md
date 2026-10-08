@@ -1,6 +1,6 @@
 # Java — Algoritmos e Lógica de Programação
 
-Este repositório reúne os arquivos desenvolvidos durante as aulas e avaliações da disciplina de **Algoritmos e Lógica de Programação**, utilizando **Java**.
+Este repositório reúne os arquivos desenvolvidos durante as aulas e avaliações da disciplina de **Algoritmos e Lógica de Programação**, **POO** etc, utilizando **Java**.
 
 Os conteúdos fazem parte do **1º ano do Ensino Médio Técnico Integrado em Desenvolvimento de Sistemas** do **IFSul — Câmpus Sapucaia do Sul**.
 
