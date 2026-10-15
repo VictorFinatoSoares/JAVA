@@ -240,23 +240,29 @@ public class IMORTAL_VICTOR_FINATO {
 
     public static int lerInteiro(String msg) {
         while (true) {
-            try {
-                System.out.print(msg);
-                return Integer.parseInt(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("ERRO: A entrada precisa ser um número INTEIRO!\n");
+            System.out.print(msg);
+            if (sc.hasNextInt()) {
+                int valor = sc.nextInt();
+                sc.nextLine();
+                return valor;
             }
+
+            sc.nextLine();
+            System.out.println("ERRO: A entrada precisa ser um número INTEIRO!\n");
         }
     }
 
     public static double lerDouble(String msg) {
         while (true) {
-            try {
-                System.out.print(msg);
-                return Double.parseDouble(sc.nextLine());
-            } catch (NumberFormatException e) {
-                System.out.println("ERRO: A entrada precisa ser um número DOUBLE!\n");
+            System.out.print(msg);
+            if (sc.hasNextDouble()) {
+                double valor = sc.nextDouble();
+                sc.nextLine();
+                return valor;
             }
+
+            sc.nextLine();
+            System.out.println("ERRO: A entrada precisa ser um número DOUBLE!\n");
         }
     }
 }
