@@ -11,7 +11,7 @@ public class IMORTAL_VICTOR_FINATO {
     public static void iniciarNovaSimulacao() {
         boolean primeiraSimulacao = true;
 
-        while (primeiraSimulacao || continuarSimulando()) {
+        while (primeiraSimulacao || continuar("Deseja iniciar uma nova simulação (S/N)? ")) {
             System.out.println("\n=== IMORTAL-1 – SISTEMA DE BORDO ===\n");
             int quantLeituras;
 
@@ -26,9 +26,7 @@ public class IMORTAL_VICTOR_FINATO {
             }
 
             primeiraSimulacao = false;
-
-            double[] leituras = realizarLeituras(quantLeituras);
-            mainMenu(leituras);
+            mainMenu(realizarLeituras(quantLeituras));
         }
 
         System.out.print("Encerrando sistema...");
@@ -50,22 +48,22 @@ public class IMORTAL_VICTOR_FINATO {
     public static void mainMenu(double[] leituras) {
         while (true) {
             System.out.print("""
-                \s
-                ============ MENU ============
-                \s
-                [1] Calcular média
-                [2] Calcular valor máximo e mínimo
-                [3] Calcular desvio de cada leitura em relação à média
-                [4] Verificar se valores estão dentro da faixa segura
-                [5] Gerar relatório completo
-                [0] Sair do menu de operações
-                \s
-               """);
+                     \s
+                     ============ MENU ============
+                     \s
+                     [1] Calcular média
+                     [2] Calcular valor máximo e mínimo
+                     [3] Calcular desvio de cada leitura em relação à média
+                     [4] Verificar se valores estão dentro da faixa segura
+                     [5] Gerar relatório completo
+                     [0] Sair do menu de operações
+                     \s
+                    """);
 
             int opcao = lerInteiro("Escolha uma opção (0-5): ");
 
             if (opcao < 0 || opcao > 5) {
-                System.out.print("OPÇÃO INVÁLIDA! Escolha entre uma opção entre 0 e 5.\n\n");
+                System.out.print("OPÇÃO INVÁLIDA! Escolha uma opção entre 0 e 5.\n\n");
                 continue;
             } else if (opcao == 0) {
                 System.out.print("Saindo do menu de operações...\n\n");
@@ -74,7 +72,7 @@ public class IMORTAL_VICTOR_FINATO {
 
             realizarOperacao(opcao, leituras);
 
-            if (!continuarOperando()) {
+            if (!continuar("Deseja continuar operando (S/N)? ")) {
                 return;
             }
         }
@@ -84,8 +82,8 @@ public class IMORTAL_VICTOR_FINATO {
         if (opcaoMenu == 1) {
             System.out.printf("A média das leituras é: %.2f\n\n", calcularMedia(leituras));
         } else if (opcaoMenu == 2) {
-            System.out.printf("Valor máximo: %.2f (Leitura %d)\n", encontrarMaximo(leituras), encontrarPosMaximo(leituras));
-            System.out.printf("Valor mínimo: %.2f (Leitura %d)\n\n", encontrarMinimo(leituras), encontrarPosMinimo(leituras));
+            System.out.printf("Valor máximo: %.2f (Leitura %d)\n", encontrarMaximo(leituras), encontrarPosMaximo(leituras) + 1);
+            System.out.printf("Valor mínimo: %.2f (Leitura %d)\n\n", encontrarMinimo(leituras), encontrarPosMinimo(leituras) + 1);
         } else if (opcaoMenu == 3) {
             exibirDesvios(leituras);
         } else if (opcaoMenu == 4) {
@@ -106,24 +104,10 @@ public class IMORTAL_VICTOR_FINATO {
         }
     }
 
-    public static boolean continuarOperando() {
+    public static boolean continuar(String msg) {
         while (true) {
-            System.out.print("Deseja realizar uma nova operação (S/N)? ");
-            String resposta =  sc.nextLine();
-
-            if (resposta.length() != 1 || (!resposta.equalsIgnoreCase("S") && !resposta.equalsIgnoreCase("N"))) {
-                System.out.print("ERRO: Resposta INVÁLIDA!\n\n");
-                continue;
-            }
-
-            return resposta.equalsIgnoreCase("S");
-        }
-    }
-
-    public static boolean continuarSimulando() {
-        while (true) {
-            System.out.print("Deseja iniciar uma nova simulação (S/N)? ");
-            String resposta =  sc.nextLine();
+            System.out.print(msg);
+            String resposta = sc.nextLine();
 
             if (resposta.length() != 1 || (!resposta.equalsIgnoreCase("S") && !resposta.equalsIgnoreCase("N"))) {
                 System.out.print("ERRO: Resposta INVÁLIDA!\n\n");
@@ -169,11 +153,11 @@ public class IMORTAL_VICTOR_FINATO {
     }
 
     public static int encontrarPosMinimo(double[] leituras) {
-        int posMenor = 1;
+        int posMenor = 0;
 
         for (int i = 0; i < leituras.length; i++) {
-            if (leituras[i] < leituras[posMenor - 1]) {
-                posMenor = i + 1;
+            if (leituras[i] < leituras[posMenor]) {
+                posMenor = i;
             }
         }
 
@@ -181,11 +165,11 @@ public class IMORTAL_VICTOR_FINATO {
     }
 
     public static int encontrarPosMaximo(double[] leituras) {
-        int posMaior = 1;
+        int posMaior = 0;
 
         for (int i = 0; i < leituras.length; i++) {
-            if (leituras[i] > leituras[posMaior - 1]) {
-                posMaior = i + 1;
+            if (leituras[i] > leituras[posMaior]) {
+                posMaior = i;
             }
         }
 
@@ -227,8 +211,8 @@ public class IMORTAL_VICTOR_FINATO {
         }
 
         System.out.printf("\nMédia: %.2f\n", calcularMedia(leituras));
-        System.out.printf("Máximo: %.2f (Leitura %d)\n", encontrarMaximo(leituras), encontrarPosMaximo(leituras));
-        System.out.printf("Mínimo: %.2f (Leitura %d)\n", encontrarMinimo(leituras), encontrarPosMinimo(leituras));
+        System.out.printf("Máximo: %.2f (Leitura %d)\n", encontrarMaximo(leituras), encontrarPosMaximo(leituras) + 1);
+        System.out.printf("Mínimo: %.2f (Leitura %d)\n", encontrarMinimo(leituras), encontrarPosMinimo(leituras) + 1);
 
         exibirDesvios(leituras);
         verificarFaixa(leituras, 500, 1600);
