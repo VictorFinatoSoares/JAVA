@@ -1,8 +1,8 @@
-package avaliacoes.segundoSemestre.avaliacao02;
+package avaliacoes.segundoSemestre.Avaliacao02;
 
 import java.util.Scanner;
 
-public class Ex02 {
+public class Ex01 {
     public static final Scanner sc = new Scanner(System.in);
     public static void main(String[] args) {
         System.out.print("Informe a quantidade de linhas: ");
@@ -13,10 +13,8 @@ public class Ex02 {
 
         int[][] vetor = preencherVetor(l, c);
 
-        System.out.printf("Soma de todos os números positivos: %d\n", somarPositivos(vetor));
-        dobrarImpares(vetor);
-
-        System.out.println("Matriz com ímpares dobrados:");
+        System.out.printf("Quantidade de multíplos de 3: %d\n", contarMultiplosDe3(vetor));
+        limitarValores(vetor);
         exibirVetor(vetor);
     }
 
@@ -42,24 +40,25 @@ public class Ex02 {
         return vetor;
     }
 
-    public static int somarPositivos(int[][] vetor) {
-        int soma = 0;
+    public static int contarMultiplosDe3(int[][] vetor) {
+        int qtdMultiplos = 0;
 
         for (int[] linha: vetor) {
             for (int num: linha) {
-                if (num > 0) {
-                    soma += num;
+                if (num % 3 == 0) {
+                    qtdMultiplos ++;
                 }
             }
         }
-        return soma;
+
+        return qtdMultiplos;
     }
 
-    public static void dobrarImpares(int[][] vetor) {
+    public static void limitarValores(int[][] vetor) {
         for (int i = 0; i < vetor.length; i++) {
             for (int j = 0; j < vetor[i].length; j++) {
-                if (vetor[i][j] % 2 != 0) {
-                    vetor[i][j] *= 2;
+                if (vetor[i][j] > 10) {
+                    vetor[i][j] = 10;
                 }
             }
         }

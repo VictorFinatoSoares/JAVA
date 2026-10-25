@@ -28,7 +28,6 @@ public class IMORTAL_VICTOR_FINATO {
             primeiraSimulacao = false;
             mainMenu(realizarLeituras(quantLeituras));
         }
-
         System.out.print("Encerrando sistema...");
     }
 
@@ -113,7 +112,6 @@ public class IMORTAL_VICTOR_FINATO {
                 System.out.print("ERRO: Resposta INVÁLIDA!\n\n");
                 continue;
             }
-
             return resposta.equalsIgnoreCase("S");
         }
     }
@@ -183,7 +181,6 @@ public class IMORTAL_VICTOR_FINATO {
         for (int i = 0; i < leituras.length; i++) {
             System.out.printf(" Leitura %d: %.2f | DESVIO: %.2f\n", i + 1, leituras[i], leituras[i] - media);
         }
-
         System.out.println();
     }
 
@@ -225,28 +222,22 @@ public class IMORTAL_VICTOR_FINATO {
     public static int lerInteiro(String msg) {
         while (true) {
             System.out.print(msg);
-            if (sc.hasNextInt()) {
-                int valor = sc.nextInt();
-                sc.nextLine();
-                return valor;
+            try {
+                return Integer.parseInt(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("ERRO: A entrada precisa ser um número INTEIRO!\n");
             }
-
-            sc.nextLine();
-            System.out.println("ERRO: A entrada precisa ser um número INTEIRO!\n");
         }
     }
 
     public static double lerDouble(String msg) {
         while (true) {
             System.out.print(msg);
-            if (sc.hasNextDouble()) {
-                double valor = sc.nextDouble();
-                sc.nextLine();
-                return valor;
+            try {
+                return Double.parseDouble(sc.nextLine());
+            } catch (NumberFormatException e) {
+                System.out.println("ERRO: A entrada precisa ser um número!\n");
             }
-
-            sc.nextLine();
-            System.out.println("ERRO: A entrada precisa ser um número DOUBLE!\n");
         }
     }
 }
