@@ -90,10 +90,10 @@ public class IMORTAL_VICTOR_FINATO {
         } else if (opcaoMenu == 4) {
             while (true) {
                 System.out.print("Mínimo aceitável: ");
-                double min = Integer.parseInt(sc.nextLine());
+                double min = Double.parseDouble(sc.nextLine());
 
                 System.out.print("Máximo aceitável: ");
-                double max = Integer.parseInt(sc.nextLine());
+                double max = Double.parseDouble(sc.nextLine());
 
                 if (min >= max) {
                     System.out.print("O valor mínimo precisa ser MENOR que o valor máximo!\n\n");
